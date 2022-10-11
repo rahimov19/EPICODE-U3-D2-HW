@@ -32,10 +32,10 @@
         <li>3rd</li>
       </ul>
       <button id="click" onclick="changeUrls()">change link</button>
-      <a href id="https://epicode.it">This link goes to Epicode</a>
+      <a href="https://epicode.it">This link goes to Epicode</a>
 
       <div>
-        <p onclick="changePcontent(event), addParagraph()">
+        <p onclick="changePcontent(event)">
           This text is just for the exercise
         </p>
       </div>
@@ -51,11 +51,19 @@
     </div>
 
     <div>
-      <p>And this text is just for the exercise too!</p>
+      <p onclick="addParagraph()">
+        And this text is just for the exercise too!
+      </p>
       <h2 onclick="changeFooterText()" style="color: red">
         Save this page on your computer and open it with VSCode to get the
         questions!
       </h2>
+      <input
+        type="text"
+        id="input-color"
+        placeholder="write here to change color"
+        oninput="inputColor(event)"
+      />
     </div>
     <script>
       /* EXERCISE 1
@@ -89,9 +97,10 @@
         */
 
       const changeUrls = function () {
-        const link = document.querySelector("a");
-        link.href = "https://www.google.com";
-        return false;
+        const link = document.querySelectorAll("a");
+        for (i = 0; i < link.length; i++) {
+          link[i].href = "https://www.google.com";
+        }
       };
 
       /* EXERCISE 5
@@ -110,7 +119,7 @@
         */
 
       const addParagraph = function (content) {
-        const addP = document.getElementById("h2A");
+        const addP = document.querySelectorAll("h2")[0];
         p = document.createElement("p");
         p.appendChild(document.createTextNode("New Pararararagraph"));
         addP.appendChild(p);
@@ -141,7 +150,7 @@
         */
 
       const makeItClickable = function () {
-        const colorado = document.getElementById("titleDiv");
+        const colorado = document.querySelectorAll("Div")[0];
         let red = Math.floor(Math.random() * 255);
         let green = Math.floor(Math.random() * 255);
         let blue = Math.floor(Math.random() * 255);
@@ -150,12 +159,11 @@
       };
 
       /* EXERCISE 10
-         Change the footer text with something else when the user clicks on it.
+         Chkange the footer text with something else when the user clics on it.
         */
 
       const changeFooterText = function () {
         const text = document.querySelectorAll("h2")[1];
-        Math.floor(Math.random() * 255);
         let red = Math.floor(Math.random() * 255);
         let green = Math.floor(Math.random() * 255);
         let blue = Math.floor(Math.random() * 255);
@@ -189,30 +197,11 @@
       /* ### EXTRA ###  EXERCISE 14
          Create an input of type "color" and use it to change the color of the subtitle
         */
-      /*const handleKeyUp = function (event) {
-        const h1 = document.querySelector("h1");
-        console.log(event);
-
-        const keyPressed = event.key;
-        h1.innerText = event.target.value;
-
-        switch (keyPressed) {
-          case "Shift":
-            h1.style.color = "red";
-            break;
-          case "Enter":
-            h1.style.color = "blue";
-            break;
-          case "Alt":
-            h1.style.color = "purple";
-            break;
-          case "Backspace":
-            h1.style.color = "green";
-            break;
-          default:
-            h1.style.color = "black";
-        }
-      };*/
+      const inputColor = function (event) {
+        const inputField = document.getElementById("input-color");
+        const p = document.getElementsByTagName("p")[1];
+        p.style.color = inputField.value;
+      };
     </script>
   </body>
 </html>
